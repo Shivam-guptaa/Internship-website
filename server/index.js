@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/user");
 const cookieParser = require("cookie-parser");
-
+require('dotenv').config();
 const app = express();
 
 async function connectDB() {
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/Internship");
+        await mongoose.connect(process.env.MONGODB_URL);
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("MongoDB connection error:", error);
@@ -25,7 +25,7 @@ app.use(cors({
 
 app.use("/auth", userRoutes);
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Listening at port ${PORT}`);
 });

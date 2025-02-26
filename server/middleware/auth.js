@@ -8,7 +8,7 @@ const auth = (req, res, next) => {
             return res.status(401).json({ message: "Not logged in (Auth failed)", status: false });
         }
 
-        const decoded = jwt.verify(token, "Secretkey");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded; 
         next();
     } catch (err) {

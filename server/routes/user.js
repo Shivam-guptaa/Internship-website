@@ -23,7 +23,7 @@ router.post("/signup", async (req, res) => {
         await newUser.save();
         console.log(newUser);
 
-        const token = jwt.sign({ id: newUser._id }, "Secretkey", { expiresIn: "4h" });
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_HOUR });
         res.cookie("token", token);
         return res.status(201).json({ message: "User Created Successfully", token });
     } catch (err) {
@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ message: "Wrong Password" });
         }
 
-        const token = jwt.sign({ id: user._id }, "Secretkey", { expiresIn: "4h" });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_HOUR });
         res.cookie("token", token);
         return res.status(200).json({ message: "User Successfully Logged in", token });
     } catch (err) {
