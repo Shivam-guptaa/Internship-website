@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:3000"]
+    origin: [process.env.FrontPORT]
 }));
 
 app.use("/auth", userRoutes);
