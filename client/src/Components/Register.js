@@ -29,7 +29,7 @@ export default function Register() {
 
       console.log(response.data);
 
-      if (response.data.token) {
+      if (response.status) {
         setSuccess("Registration successful! Redirecting to login...");
         setTimeout(() => navigate("/login"), 500); // Redirect 
       } else {
