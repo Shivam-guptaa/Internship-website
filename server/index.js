@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: process.env.FrontPort || "http://localhost:3000", 
+    origin: "https://internship-front.vercel.app" || "http://localhost:3000", 
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
