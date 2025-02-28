@@ -24,6 +24,7 @@ app.use(cors({
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+console.log( process.env.FrontPort);
 
 app.use("/auth", userRoutes);
 
