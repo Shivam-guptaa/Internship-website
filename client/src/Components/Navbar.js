@@ -43,13 +43,9 @@ export default function Navbar() {
       </ul>
       <h2 className={styles.heading}><b>MyPortal</b></h2>
       <div>
-        {isLoggedIn ? (
-          <button className={styles.authButton} onClick={handleLogout}>Logout</button>
-        ) : (
-          <Link to="/login">
-            <button className={styles.authButton}>Login</button>
-          </Link>
-        )}
+        <button className={styles.authButton} onClick={isLoggedIn ? handleLogout : () => navigate("/login")}>
+          {isLoggedIn ? "Logout" : "Login"}
+        </button>
       </div>
     </nav>
   );
