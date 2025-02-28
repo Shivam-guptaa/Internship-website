@@ -31,7 +31,7 @@ export default function Register() {
 
       if (response.data.token) {
         setSuccess("Registration successful! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 2000); // Redirect after 2 seconds
+        setTimeout(() => navigate("/login"), 500); // Redirect 
       } else {
         setError(response.data.message || "Registration failed. Try again.");
       }
