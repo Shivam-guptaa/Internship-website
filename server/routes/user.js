@@ -23,9 +23,7 @@ router.post("/signup", async (req, res) => {
         await newUser.save();
         console.log(newUser);
 
-        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_HOUR });
-        res.cookie("token", token);
-        return res.status(201).json({ message: "User Created Successfully", token });
+        return res.status(201).json({ message: "User Created Successfully" });
     } catch (err) {
         return res.status(500).json({ message: "Internal Server Error", error: err });
     }
@@ -44,7 +42,11 @@ router.post("/login", async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_HOUR });
-        res.cookie("token", token);
+        res.cookie("token", token,{
+            httpOnly: true, 
+            secure: true,  
+            sameSite: "None",  }
+        );
         return res.status(200).json({ message: "User Successfully Logged in", token });
     } catch (err) {
         return res.status(500).json({ message: "Internal Server Error", error: err });
