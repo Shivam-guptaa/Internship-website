@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #007bff;
+  color: white;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.navList li {
+  display: inline;
+}
+
+.navList a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.authButton {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.authButton:hover {
+  background-color: #0056b3;
+  color: white;
+}

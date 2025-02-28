@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/apply", auth, async (req, res) => {
     try {
-        const { oppo } = req.body;
+        const oppo = req.body;
         const newApplication = new Applied({
             userid: req.user.id,
             id: oppo.id,
@@ -62,7 +62,6 @@ router.post("/apply", auth, async (req, res) => {
             company_name: oppo.cname,
             duration: oppo.duration
         });
-
         await newApplication.save();
         return res.status(200).json({ message: "Applied successfully", status: true });
     } catch (err) {
