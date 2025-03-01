@@ -85,6 +85,7 @@ router.get("/verify", auth, async (req, res) => {
         if (!req.user) {
             return res.status(401).json({ message: "Authentication failed", status: false });
         }
+        
         return res.status(200).json({ message: "Authentication successful", status: true });
     } catch (err) {
         return res.status(500).json({ message: "Internal Server Error", status: false, error: err });
@@ -92,7 +93,11 @@ router.get("/verify", auth, async (req, res) => {
 });
 
 router.get("/logout", auth, (req, res) => {
-    res.clearCookie("token");
+    res.clearCookie("token",{
+        httpOnly: true,
+  secure: true,
+  sameSite: "None"}
+    );
     return res.status(200).json({ message: "Successfully logged out" });
 });
 
